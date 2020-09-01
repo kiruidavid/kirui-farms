@@ -1,6 +1,6 @@
 const mongoose = require("mongoose") 
 const Schema = mongoose.Schema 
-
+// farmer schema
 const farmerSchema = new Schema ({
     name: {
         type: String, 

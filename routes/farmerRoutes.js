@@ -2,7 +2,7 @@ const express = require("express")
 const bcrypt = require("bcryptjs")
 const Farmer = require("../models/farmerModel")
 const farmer_router = express.Router()
-
+// register a farmer
 farmer_router.post("/",  async (req, res) => {  
     try{
     let {name, password, passwordCheck, email, bags,  crop, location} = req.body 
@@ -68,6 +68,7 @@ farmer_router.post("/",  async (req, res) => {
         
 
 }) 
+// get farmers
 
 farmer_router.get("/", async (req, res) => {  
     try{
@@ -84,6 +85,7 @@ farmer_router.get("/", async (req, res) => {
    }
 
 })  
+// get a single farmer with the ID
 farmer_router.get("/:id", async (req, res) => {
     try {
         const farmer = await Farmer.findById({_id: req.params.id}) 
@@ -98,7 +100,8 @@ farmer_router.get("/:id", async (req, res) => {
         })
         
     }
-})
+}) 
+//delete farmer using the ID
 farmer_router.delete("/:id", async (req, res) => {
     try {
         const farmer = await Farmer.findByIdAndDelete({_id: req.params.id}) 

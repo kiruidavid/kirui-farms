@@ -5,7 +5,10 @@ const CropOrder = require("../models/cropOrder")
 const Farmer = require("../models/farmerModel") 
 const User = require("../models/userModel") 
 
-
+/*  
+posting an order, 
+the user has to be authenticated with the right token 
+*/
 order_router.post("/", userAuth,   async (req, res) => { 
   try {  
         
@@ -54,7 +57,9 @@ order_router.post("/", userAuth,   async (req, res) => {
       })
   }
 })
-    
+/*  
+getting the orders
+*/   
 
 order_router.get("/", async (req, res) => {
     try {
@@ -93,7 +98,9 @@ order_router.get("/:id", async (req, res) => {
         
     }
 }) 
-
+/*  
+deleting orders
+*/
 order_router.delete("/:id", async (req, res) => {
     try {
         const order = await CropOrder.findByIdAndDelete({_id: req.params.id}) 

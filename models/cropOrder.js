@@ -1,6 +1,8 @@
 const mongoose = require("mongoose") 
 
-
+/*  
+ order schema, with refrence from a user and farmer collections
+*/
 const cropOrderSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId, 

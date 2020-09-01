@@ -1,5 +1,8 @@
 const jwt = require("jsonwebtoken")
-
+/* 
+middleware to validate if there is any token when a request is made
+verify if the right JWT secret is used 
+*/
 const userAuth = (req, res, next) => {
     try {
         const token = req.header("x-auth-token") 
