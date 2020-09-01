@@ -1,6 +1,6 @@
 const mongoose = require("mongoose") 
 
-const uri = "mongodb+srv://kirui:kirui@cluster0-obtit.gcp.mongodb.net/farmers_market?retryWrites=true&w=majority" 
+const uri = process.env.MONGO_URI
 
 const connectDB = () => {
     try { 

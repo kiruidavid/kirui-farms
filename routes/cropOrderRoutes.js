@@ -96,18 +96,21 @@ order_router.get("/:id", async (req, res) => {
 
 order_router.delete("/:id", async (req, res) => {
     try {
-        const Order = await CropOrder.findByIdAndDelete({_id: req.params.id})
+        const order = await CropOrder.findByIdAndDelete({_id: req.params.id}) 
+        if(!order){
+            res.status(404).json({
+                success: false, 
+                message:"User with such ID is not found!"
+            })
+        }
         res.status(200).json({
-            success: true,  
-            message: "Order is succesfully deleted"
-          
-        
-            
+            success: true, 
+            message: "User is deleted!"
         })
     } catch (err) { 
         res.status(500).json({
             success: false, 
-            message: err.message
+            error: "Internal Server Error"
         })
         
     }
