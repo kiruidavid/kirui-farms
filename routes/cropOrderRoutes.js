@@ -61,9 +61,6 @@ order_router.get("/", async (req, res) => {
         const Order = await CropOrder.find()
         res.status(200).json({
             success: true,  
-            userName: await User.find().populate("User").select("username"),
-            farmer: await Farmer.find().populate("Farmer").select("name"), 
-            crop: await Farmer.find().populate("Farmer").select("crop"), 
             body: Order
           
         
@@ -76,5 +73,44 @@ order_router.get("/", async (req, res) => {
         })
         
     }
-})
+}) 
+
+order_router.get("/:id", async (req, res) => {
+    try {
+        const Order = await CropOrder.findById({_id: req.params.id})
+        res.status(200).json({
+            success: true,  
+            body: Order
+          
+        
+            
+        })
+    } catch (err) { 
+        res.status(500).json({
+            success: false, 
+            message: err.message
+        })
+        
+    }
+}) 
+
+order_router.delete("/:id", async (req, res) => {
+    try {
+        const Order = await CropOrder.findByIdAndDelete({_id: req.params.id})
+        res.status(200).json({
+            success: true,  
+            message: "Order is succesfully deleted"
+          
+        
+            
+        })
+    } catch (err) { 
+        res.status(500).json({
+            success: false, 
+            message: err.message
+        })
+        
+    }
+}) 
+
 module.exports = order_router
