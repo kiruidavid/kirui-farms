@@ -19,20 +19,6 @@ const farmerSchema = new Schema ({
         required: true, 
         unique: true
         
-    }, 
-    crop : {
-        type: String, 
-        required: true, 
-
-    }, 
-    bags: { 
-        type: Number, 
-        required: true
-      
-    }, 
-    location : {
-        type: String, 
-        
     }
    
 

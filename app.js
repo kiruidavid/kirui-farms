@@ -7,7 +7,9 @@ const router = require("./routes/userRoutes")
 // farmer routes 
 const farmer_router = require("./routes/farmerRoutes") 
 // order routes 
-const order_router = require("./routes/cropOrderRoutes")
+const order_router = require("./routes/cropOrderRoutes") 
+// crop routes 
+const cropRouter = require("./routes/cropRoutes")
 
 
 connectDB()
@@ -17,7 +19,8 @@ app.use(express.json())
 
 app.use("/user", router) 
 app.use("/farmer", farmer_router) 
-app.use("/orders", order_router)
+app.use("/orders", order_router) 
+app.use("/crop", cropRouter)
 
 const PORT = 5000
 
