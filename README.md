@@ -1,4 +1,4 @@
-# kirui-farms 
+# Kirui-farms 
 
 This is a simple Node project, it has Users and Farmers. 
 The Farmer registers  and adds the crop they want to sell, with the number of bags and their price. 
