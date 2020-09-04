@@ -8,10 +8,11 @@ const cropOrderSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'
     }, 
-    farmer: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Farmer'
-    }, 
+   
+    crop: {
+        type: String,
+        required: true
+    },
     bags: { 
         type: Number, 
         required: true

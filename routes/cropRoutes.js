@@ -53,6 +53,14 @@ cropRouter.post("/", farmerAuth, async (req, res) => {
    
 
 
-}) 
+})  
+
+cropRouter.get("/",  async(req, res) => {
+    const crop = await Crop.find()
+    res.status(200).json({
+        success: true, 
+        body: crop
+    })
+})
 
 module.exports = cropRouter

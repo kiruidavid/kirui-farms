@@ -4,6 +4,7 @@ const userAuth = require("../middleware/userAuth")
 const CropOrder = require("../models/cropOrder") 
 const Farmer = require("../models/farmerModel") 
 const User = require("../models/userModel") 
+const Crop = require("../models/cropModel")
 
 /*  
 posting an order, 
@@ -12,22 +13,26 @@ the user has to be authenticated with the right token
 order_router.post("/", userAuth,   async (req, res) => { 
   try {  
         
-        const { bags, price, farmer} = req.body 
-
-        const isExistingFarmer = await Farmer.findById({ _id: farmer}) 
-
-        if(!isExistingFarmer){
-            res.status(400).json({
-                success: false, 
-                message: "No such Farmer is found"
-            })
-        }
-    
+        const { bags, price, crop} = req.body 
         
 
+        
+        
+
+        const isCropExisting = await Crop.findOne({name: crop}) 
+
+        if(!isCropExisting){ 
+            res.status(400).json({
+                success: false, 
+                message: "No such crop is provided!"
+            })
+
+        } 
+        
         const order = new CropOrder({
             user: req.user, 
-            farmer,
+            crop, 
+            
             bags,
             price
 
@@ -36,8 +41,8 @@ order_router.post("/", userAuth,   async (req, res) => {
         res.status(200).json({
             success: true, 
             userName: await User.findById({_id: req.user}).populate("User").select("username"),
-            farmer: await Farmer.findById({_id: farmer}).populate("Farmer").select("name"), 
-            crop: await Farmer.findById({_id: farmer}).populate("Farmer").select("crop"), 
+            
+            crop: savedOrder.crop,
             bags: savedOrder.bags, 
             price: savedOrder.price, 
             totalprice: savedOrder.totalPrice
